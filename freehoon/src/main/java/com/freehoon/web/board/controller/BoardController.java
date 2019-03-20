@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.freehoon.common.Search;
+import com.freehoon.common.Util;
 import com.freehoon.web.board.model.BoardVO;
 import com.freehoon.web.board.model.ReplyVO;
 import com.freehoon.web.board.service.BoardService;
