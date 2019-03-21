@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class Util {
+public class CommonUtils {
 
 	/*
 	 * 날짜 문자열 생성
