@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.freehoon.web.UploadFile;
+import com.freehoon.common.UploadFile;
 import com.freehoon.web.board.model.ReplyVO;
 import com.freehoon.web.board.service.BoardService;
 
@@ -83,6 +83,8 @@ public class RestBoardController {
 	
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
 	public Map<String, Object> uploadImage(MultipartFile file, HttpServletRequest request) throws Exception {
+		logger.info("게시판 이미지 업로드 테스트");
+		
 		Map<String, Object> result = new HashMap<>();
 		
 		try {

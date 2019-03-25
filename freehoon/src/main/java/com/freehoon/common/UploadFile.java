@@ -1,4 +1,4 @@
-package com.freehoon.web;
+package com.freehoon.common;
 
 import java.io.File;
 import java.io.IOException;
