@@ -21,13 +21,19 @@ public class UserController {
 	@Inject
 	private UserService userService;
 	
+	@RequestMapping(value = "/registUserForm", method = RequestMethod.GET)
+	public String registUserForm() throws Exception {
+		
+		return "user/registUserForm";
+	}
+	
 	@RequestMapping(value = "/getUserList", method = RequestMethod.GET)
 	public String getUserList(Model model) throws Exception{
 		logger.info("getUserList();....");
 		
 		model.addAttribute("userList", userService.getUserList());
 		
-		return "board/userList";
+		return "user/userList";
 	}
 	
 	@RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
@@ -37,7 +43,7 @@ public class UserController {
 		
 		model.addAttribute("userInfo", userService.getUserInfo(uid));
 		
-		return "board/userList";
+		return "user/userList";
 	}
 	
 	
