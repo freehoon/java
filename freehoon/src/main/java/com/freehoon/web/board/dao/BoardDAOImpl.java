@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.freehoon.common.Pagination;
 import com.freehoon.common.Search;
 import com.freehoon.web.board.model.BoardVO;
 import com.freehoon.web.board.model.ReplyVO;

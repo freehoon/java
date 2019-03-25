@@ -25,9 +25,7 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-	@Value("#{datasource['jdbc.username']}")
-	private String username;
-	
+
 	@Inject
 	private BoardService boardService;
 	
@@ -40,9 +38,7 @@ public class BoardController {
 		//	, @RequestParam(required = false, defaultValue = "10") int pageSize
 		//	, @RequestParam(required = false, defaultValue = "10") int rangeSize
 			) throws Exception {
-		
-		logger.info("jdbc.username : " + username);
-		
+				
 		Search search = new Search();
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
