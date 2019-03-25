@@ -21,6 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadFile {
 	private static final Logger logger = LoggerFactory.getLogger(UploadFile.class);
 
+	/*
+	 * 파일을 저장하고 저장된 경로(문자열)을 반환한다.
+	 */
 	public static Map<String, Object> uploadFile(MultipartFile file, HttpServletRequest request) throws Exception{
 		Map<String, Object> result = new HashMap<>();
 		

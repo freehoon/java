@@ -1,3 +1,4 @@
+
 ClassicEditor
 	.create( document.querySelector( '#content' ), {
 		toolbar: [ 'heading', '|', 'undo', 'redo', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload','mediaEmbed', 'insertTable' ]
@@ -9,7 +10,7 @@ ClassicEditor
 				{ model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
 			]
 		}
-		, uploadUrl: '/restBoard/uploadImage'
+//		, uploadUrl: '/restBoard/uploadImage'
 
 	})
 	.then( editor => {
@@ -20,3 +21,4 @@ ClassicEditor
 	.catch( error => {
 		console.error( error );
 	} );
+
