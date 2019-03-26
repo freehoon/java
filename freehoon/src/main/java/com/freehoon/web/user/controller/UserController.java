@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.freehoon.web.user.model.UserVO;
 import com.freehoon.web.user.service.UserService;
 
 @Controller
@@ -22,7 +23,9 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/registUserForm", method = RequestMethod.GET)
-	public String registUserForm() throws Exception {
+	public String registUserForm(Model model) throws Exception {
+		
+		model.addAttribute("userVO", new UserVO());
 		
 		return "user/registUserForm";
 	}

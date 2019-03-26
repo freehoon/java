@@ -3,7 +3,7 @@ package com.freehoon.web.user.model;
 public class UserVO {
 	int uid;
 	String name;
-	String password;
+	String pwd;
 	String email;
 	
 	public int getUid() {
@@ -22,12 +22,12 @@ public class UserVO {
 		this.name = name;
 	}
 	
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	
 	public String getEmail() {
@@ -40,7 +40,7 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO [uid=" + uid + ", name=" + name + ", password=" + password + ", email=" + email + "]";
+		return "UserVO [uid=" + uid + ", name=" + name + ", pwd=" + pwd + ", email=" + email + "]";
 	}
 	
 }
