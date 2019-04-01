@@ -11,15 +11,15 @@ public class BoardVO {
 	public String reg_id;
 	public String reg_dt;
 	public String edit_dt;
-	
+		
 	public int getBid() {
 		return bid;
 	}
-	
+
 	public void setBid(int bid) {
 		this.bid = bid;
 	}
-	
+
 	public String getCate_cd() {
 		return cate_cd;
 	}
