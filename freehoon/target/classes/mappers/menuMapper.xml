@@ -6,20 +6,23 @@
 <mapper namespace="com.freehoon.web.menu.menuMapper">
 	<select id="getMenuList" resultType="com.freehoon.web.menu.model.MenuVO">
 		SELECT
-			CODE
+			MID
+			, CODE
 			, CODENAME
+			, SORT_NUM
+			, COMMENT
 		FROM
 			TBL_MENU
 		ORDER BY SORT_NUM desc
 	</select>
 	
-	<insert id="saveMenu" parameterType="com.freehoon.web.menu.model.MenuVO">
-		INSERT INTO TBL_MENU(CODE, CODENAME, SORT_NUM, COMMAND, REG_ID, REG_DT)
+	<insert id="insertMenu" parameterType="com.freehoon.web.menu.model.MenuVO">
+		INSERT INTO TBL_MENU(CODE, CODENAME, SORT_NUM, COMMENT, REG_ID, REG_DT)
 		VALUES (
 			#{code}
 			, #{codename}
 			, #{sort_num}
-			, #{command}
+			, #{comment}
 			, #{reg_id}
 			, now()
 		)
@@ -28,7 +31,7 @@
 	<update id="updateMenu" parameterType="com.freehoon.web.menu.model.MenuVO">
 		UPDATE TBL_MENU SET
 			CODENAME = #{codename}
-			, COMMAND = #{command}
+			, COMMENT = #{comment}
 			, SORT_NUM = #{sort_num}
 		WHERE
 			CODE = #{code}

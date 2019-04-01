@@ -5,7 +5,7 @@
 
 <c:set var="globalCtx" value="${pageContext.request.contextPath}" scope="request"/>
 
-<c:url var="btnSaveURL" value="/board/boardForm">
+<c:url var="btnSaveURL" value="/restMenu/saveMenu">
 	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
 	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
@@ -13,7 +13,7 @@
 <c:url var="contentViewURL" value="/board/getBoardContent">
 </c:url>
 
-<c:url var="getBoardListURL" value="/board/getBoardList">
+<c:url var="getMenuListURL" value="/restMenu/getMenuList">
 </c:url>
 
 
@@ -25,10 +25,91 @@
 <title>Menu List</title>
 
 <script>
+	$(function(){
+		fn_showList();
+	});
+
+	function fn_showList(){
+		var paramData = {};
+		
+		$.ajax({
+			url : "${getMenuListURL}"
+			, type : "POST"
+			, dataType :  "json"
+			, data : paramData
+			, success : function(result){
+				console.log(result);
+				/* 
+				array1.forEach(function(element) {
+					console.log(element);
+				});
+				 */
+				if (result.status == "OK"){
+					if ( result.menuList.length > 0 ) {
+						var list = result.menuList;
+						var htmls = "";
+						result.menuList.forEach(function(e) {
+							htmls += '<tr>';
+							htmls += '<td>' + e.mid + '</td>';
+							htmls += '<td>';
+							htmls += '<a href="#" onClick="fn_menuInfo(' + e.mid + ')" >';
+							htmls += e.code;
+							htmls += '</a>';
+							htmls += '</td>';
+							htmls += '<td>' + e.codename + '</td>';
+							htmls += '<td>' + e.sort_num + '</td>';
+							htmls += '<td>' + e.comment + '</td>';
+							htmls += '</tr>';
+						});
+					}
+				} else {
+					console.log("조회실패");
+				}
+				/*
+				var htmls = '';
+				htmls += '<tr>';
+				htmls += '<td><c:out value="${list.mid}"></c:out></td>';
+				htmls += '<td>';
+				htmls += '<a href="#" onClick="fn_menuInfo(<c:out value="${list.mid}"/>)" >';
+				htmls += '<c:out value="${list.code}"/>';
+				htmls += '</a>';
+				htmls += '</td>';
+				htmls += '<td><c:out value="${list.codename}"/></td>';
+				htmls += '<td><c:out value="${list.sort_num}"/></td>';
+				htmls += '<td><c:out value="${list.commant}"/></td>';
+				htmls += '</tr>';
+				*/
+				$('#menuList').html(htmls);
+				
+			}
+		});
+	}
+	
 	$(document).on('click', '#btnSave', function(e){
 		e.preventDefault();
 		
-		location.href = "${btnSaveURL}";
+		var url = "${btnSaveURL}";
+		var paramData = {
+				"code" : $("#code").val()
+				, "codename" : $("#codename").val()
+				, "sort_num" : $("#sort_num").val()
+				, "comment" : $("#comment").val()
+		};
+		
+		console.log("url : " + url);
+		
+		$.ajax({
+			url : url
+			, type : "POST"
+			, dataType :  "json"
+			, data : paramData
+			, success : function(result){
+				console.log(result);
+				
+				fn_showList();
+			}
+		});
+		
 	});
 	
 	$(document).on('click', '#btnSearch', function(e){
@@ -128,8 +209,8 @@
 				
 				<div class="row">
 					<div class="col-md-12 mb-3">
-						<label for="commant">Commant</label>
-						<input type="text" class="form-control" id="commant" placeholder="" value="" required="">
+						<label for="comment">Comment</label>
+						<input type="text" class="form-control" id="comment" placeholder="" value="" required="">
 					</div>
 				</div>
 				
@@ -162,27 +243,7 @@
 						<th>command</th>
 					</tr>
 				</thead>
-				<tbody>
-					<c:choose>
-						<c:when test="${empty menuList}" >
-							<tr><td colspan="5" align="center"> 데이터가 없습니다. </td></tr>
-						</c:when> 
-						<c:when test="${!empty menuList}">
-							<c:forEach var="list" items="${menuList}">
-								<tr>
-									<td><c:out value="${list.mid}"></c:out></td>
-									<td>
-										<a href="#" onClick="fn_menuInfo(<c:out value="${list.mid}"/>)" >
-											<c:out value="${list.code}"/>
-										</a>
-									</td>
-									<td><c:out value="${list.codename}"/></td>
-									<td><c:out value="${list.sort_num}"/></td>
-									<td><c:out value="${list.commant}"/></td>
-								</tr>
-							</c:forEach>
-						</c:when>
-					</c:choose>
+				<tbody id="menuList">
 				</tbody>
 			</table>
 		</div>
