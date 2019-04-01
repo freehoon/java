@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
 <c:set var="globalCtx" value="${pageContext.request.contextPath}" scope="request"/>
 
-<c:url var="btnSaveURL" value="/restMenu/saveMenu">
+<c:url var="saveURL" value="/restMenu/saveMenu">
 	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
 	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
 
-<c:url var="contentViewURL" value="/board/getBoardContent">
+<c:url var="updateURL" value="/restMenu/updateMenu">
 </c:url>
 
 <c:url var="getMenuListURL" value="/restMenu/getMenuList">
@@ -39,11 +39,7 @@
 			, data : paramData
 			, success : function(result){
 				console.log(result);
-				/* 
-				array1.forEach(function(element) {
-					console.log(element);
-				});
-				 */
+				
 				if (result.status == "OK"){
 					if ( result.menuList.length > 0 ) {
 						var list = result.menuList;
@@ -52,7 +48,7 @@
 							htmls += '<tr>';
 							htmls += '<td>' + e.mid + '</td>';
 							htmls += '<td>';
-							htmls += '<a href="#" onClick="fn_menuInfo(' + e.mid + ')" >';
+							htmls += '<a href="#" onClick="fn_menuInfo(' + mid + ',\'' + e.code +'\',\'' + e.codename + '\', ' + e.sort_num + ', \'' + e.comment + '\')" >';
 							htmls += e.code;
 							htmls += '</a>';
 							htmls += '</td>';
@@ -65,20 +61,7 @@
 				} else {
 					console.log("조회실패");
 				}
-				/*
-				var htmls = '';
-				htmls += '<tr>';
-				htmls += '<td><c:out value="${list.mid}"></c:out></td>';
-				htmls += '<td>';
-				htmls += '<a href="#" onClick="fn_menuInfo(<c:out value="${list.mid}"/>)" >';
-				htmls += '<c:out value="${list.code}"/>';
-				htmls += '</a>';
-				htmls += '</td>';
-				htmls += '<td><c:out value="${list.codename}"/></td>';
-				htmls += '<td><c:out value="${list.sort_num}"/></td>';
-				htmls += '<td><c:out value="${list.commant}"/></td>';
-				htmls += '</tr>';
-				*/
+				
 				$('#menuList').html(htmls);
 				
 			}
@@ -88,7 +71,12 @@
 	$(document).on('click', '#btnSave', function(e){
 		e.preventDefault();
 		
-		var url = "${btnSaveURL}";
+		var url = "${saveURL}";
+		var mid = $("#mid").val();
+		
+		if (mid != "") {
+			var url = "${updateURL}";
+		}
 		var paramData = {
 				"code" : $("#code").val()
 				, "codename" : $("#codename").val()
@@ -97,7 +85,7 @@
 		};
 		
 		console.log("url : " + url);
-		
+		/*
 		$.ajax({
 			url : url
 			, type : "POST"
@@ -109,6 +97,7 @@
 				fn_showList();
 			}
 		});
+		*/
 		
 	});
 	
@@ -123,11 +112,12 @@
 	});
 	
 	//메뉴 정보 셋
-	function fn_menuInfo(code, codename, sort_num, commant) {
+	function fn_menuInfo(mid, code, codename, sort_num, comment) {
+		$("#mid").val(mid);
 		$("#code").val(code);
 		$("#codename").val(codename);
 		$("#sort_num").val(sort_num);
-		$("#commant").val(commant);
+		$("#comment").val(comment);
 	}
 	
 	function fn_prev(page, range, rangeSize, searchType, keyword) {
@@ -185,32 +175,32 @@
 		<h4 class="mb-3">Menu Info</h4>
 		<div>
 			<form:form name="form" id="form" role="form" modelAttribute="menuVO" method="post" action="${pageContext.request.contextPath}/menu/saveMenu">
-								
+				<form:hidden path="mid" id="mid"/>
 				<div class="row">
 					<div class="col-md-4 mb-3">
 						<label for="code">Code</label>
-						<input type="text" class="form-control" id="code" placeholder="" value="" required="">
+						<form:input path="code" id="code" class="form-control"  placeholder="" value="" required="" />
 						<div class="invalid-feedback">
 							Valid Code is required.
 						</div>
 					</div>
 					<div class="col-md-5 mb-3">
 						<label for="codename">Code name</label>
-						<input type="text" class="form-control" id="codename" placeholder="" value="" required="">
+						<form:input path="codename" class="form-control" id="codename" placeholder="" value="" required="" />
 						<div class="invalid-feedback">
 							Valid Code name is required.
 						</div>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="sort_num">Sort</label>
-						<input type="text" class="form-control" id="sort_num" placeholder="" required="">
+						<form:input path="sort_num" class="form-control" id="sort_num" placeholder="" required="" />
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<label for="comment">Comment</label>
-						<input type="text" class="form-control" id="comment" placeholder="" value="" required="">
+						<form:input path="comment" class="form-control" id="comment" placeholder="" value="" required="" />
 					</div>
 				</div>
 				
@@ -220,6 +210,7 @@
 		
 		<div>
 			<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
+			<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 		</div>
 		
 		<h4 class="mb-3" style="padding-top:15px">Menu List</h4>
