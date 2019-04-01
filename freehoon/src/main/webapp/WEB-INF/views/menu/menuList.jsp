@@ -5,7 +5,7 @@
 
 <c:set var="globalCtx" value="${pageContext.request.contextPath}" scope="request"/>
 
-<c:url var="writeFormUrl" value="/board/boardForm">
+<c:url var="btnSaveURL" value="/board/boardForm">
 	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
 	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
@@ -25,10 +25,10 @@
 <title>Menu List</title>
 
 <script>
-	$(document).on('click', '#btnWriteForm', function(e){
+	$(document).on('click', '#btnSave', function(e){
 		e.preventDefault();
 		
-		location.href = "${writeFormUrl}";
+		location.href = "${btnSaveURL}";
 	});
 	
 	$(document).on('click', '#btnSearch', function(e){
@@ -41,11 +41,12 @@
 		
 	});
 	
-	function fn_contentView(bid) {
-		var url = "${contentViewURL}";
-		url = url + "?bid=" + bid;
-		
-		location.href = url;
+	//메뉴 정보 셋
+	function fn_menuInfo(code, codename, sort_num, commant) {
+		$("#code").val(code);
+		$("#codename").val(codename);
+		$("#sort_num").val(sort_num);
+		$("#commant").val(commant);
 	}
 	
 	function fn_prev(page, range, rangeSize, searchType, keyword) {
@@ -171,7 +172,7 @@
 								<tr>
 									<td><c:out value="${list.mid}"></c:out></td>
 									<td>
-										<a href="#" onClick="fn_contentView(<c:out value="${list.mid}"/>)" >
+										<a href="#" onClick="fn_menuInfo(<c:out value="${list.mid}"/>)" >
 											<c:out value="${list.code}"/>
 										</a>
 									</td>

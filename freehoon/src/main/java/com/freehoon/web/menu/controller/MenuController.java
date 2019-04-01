@@ -27,4 +27,6 @@ public class MenuController {
 		
 		return "menu/menuList";
 	}
+	
+	
 }
