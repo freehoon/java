@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
 
@@ -70,18 +71,23 @@
 						
 						var pagination = "";
 						
+						console.log("startPage : " + result.pagination.startPage);
+						console.log("endPage : " + result.pagination.endPage);
+						/*
+						pagination += '<fmt:parseNumber value="' + result.pagination.startPage + '" var="startPage" />';
+						pagination += '<fmt:parseNumber value="' + result.pagination.endPage + '" var="endPage" />';
 						pagination += '<ul class="pagination">';
-						pagination += '<c:if test="' + ${pagination.prev}+ '">';
-						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_prev(\'' + ${pagination.page} + '\', \'' + ${pagination.range} + '\', \'' + ${pagination.rangeSize} + '\', \'' + ${pagination.searchType} + '\', \'' + ${pagination.keyword} + '\')">Previous</a></li>';
+						pagination += '<c:if test="' + ${result.pagination.prev}+ '">';
+						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_prev(\'' + ${result.pagination.page} + '\', \'' + ${result.pagination.range} + '\', \'' + ${result.pagination.rangeSize} + '\', \'' + ${result.pagination.searchType} + '\', \'' + ${result.pagination.keyword} + '\')">Previous</a></li>';
 						pagination += '</c:if>';
-						pagination += '<c:forEach begin="' + ${pagination.startPage} + '" end="' + ${pagination.endPage} + '" var="idx">';
-						pagination += '<li class="page-item <c:out value="' + ${pagination.page == idx ? 'active' : ''} + '"/> "><a class="page-link" href="#" onClick="fn_pagination(' + ${idx} + ', ' + ${pagination.range} + ', ' + ${pagination.rangeSize} + ', ' + ${pagination.searchType} + ', ' + ${pagination.keyword} + ' )"> ' + ${idx} + '</a></li>';
+						pagination += '<c:forEach begin="${startPage}" end="endPage" var="idx">';
+						pagination += '<li class="page-item <c:out value="' + ${result.pagination.page == idx ? 'active' : ''} + '"/> "><a class="page-link" href="#" onClick="fn_pagination(\'' + ${idx} + '\', \'' + ${result.pagination.range} + '\', \'' + ${result.pagination.rangeSize} + '\', \'' + ${result.pagination.searchType} + '\', \'' + ${result.pagination.keyword} + '\' )"> ' + ${idx} + '</a></li>';
 						pagination += '</c:forEach>';
-						pagination += '<c:if test="' + ${pagination.next} + '">';
-						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_next(' + ${pagination.page} + ', ' + ${pagination.range} + ', ' + ${pagination.rangeSize} + ', ' + ${pagination.searchType} + ', ' + ${pagination.keyword} + ')">Next</a></li>';
+						pagination += '<c:if test="' + ${result.pagination.next} + '">';
+						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_next(\'' + ${result.pagination.page} + '\', \'' + ${result.pagination.range} + '\', \'' + ${result.pagination.rangeSize} + '\', \'' + ${result.pagination.searchType} + '\', \'' + ${result.pagination.keyword} + '\')">Next</a></li>';
 						pagination += '</c:if>';
 						pagination += '</ul>';
-						
+						*/
 						
 						
 						
@@ -91,7 +97,7 @@
 				}
 				
 				$('#menuList').html(htmls);
-				$('#paginationBox').html(pagination);
+			//	$('#paginationBox').html(pagination);
 				
 			}
 		});
