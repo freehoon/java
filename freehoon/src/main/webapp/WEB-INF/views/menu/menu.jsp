@@ -68,6 +68,21 @@
 							htmls += '</tr>';
 						});
 						
+						var pagination = "";
+						
+						pagination += '<ul class="pagination">';
+						pagination += '<c:if test="' + ${pagination.prev}+ '">';
+						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_prev(\'' + ${pagination.page} + '\', \'' + ${pagination.range} + '\', \'' + ${pagination.rangeSize} + '\', \'' + ${pagination.searchType} + '\', \'' + ${pagination.keyword} + '\')">Previous</a></li>';
+						pagination += '</c:if>';
+						pagination += '<c:forEach begin="' + ${pagination.startPage} + '" end="' + ${pagination.endPage} + '" var="idx">';
+						pagination += '<li class="page-item <c:out value="' + ${pagination.page == idx ? 'active' : ''} + '"/> "><a class="page-link" href="#" onClick="fn_pagination(' + ${idx} + ', ' + ${pagination.range} + ', ' + ${pagination.rangeSize} + ', ' + ${pagination.searchType} + ', ' + ${pagination.keyword} + ' )"> ' + ${idx} + '</a></li>';
+						pagination += '</c:forEach>';
+						pagination += '<c:if test="' + ${pagination.next} + '">';
+						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_next(' + ${pagination.page} + ', ' + ${pagination.range} + ', ' + ${pagination.rangeSize} + ', ' + ${pagination.searchType} + ', ' + ${pagination.keyword} + ')">Next</a></li>';
+						pagination += '</c:if>';
+						pagination += '</ul>';
+						
+						
 						
 						
 					}
@@ -76,6 +91,7 @@
 				}
 				
 				$('#menuList').html(htmls);
+				$('#paginationBox').html(pagination);
 				
 			}
 		});
@@ -307,6 +323,12 @@
 			</table>
 		</div>
 		<!-- List{e} -->
+		
+		
+		<!-- pagination{s} -->
+		<div id="paginationBox">
+		</div>
+		<!-- pagination{e} -->
 
 	</div>
 	</article>
