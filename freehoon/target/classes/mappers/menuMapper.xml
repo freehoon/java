@@ -13,7 +13,8 @@
 			, COMMENT
 		FROM
 			TBL_MENU
-		ORDER BY SORT_NUM desc
+		ORDER BY SORT_NUM DESC, CODE ASC
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<insert id="insertMenu" parameterType="com.freehoon.web.menu.model.MenuVO">
@@ -42,5 +43,25 @@
 		WHERE
 			CODE = #{code}
 	</delete>
+	
+	<select id="getMenuListCnt" resultType="int">
+		SELECT
+			count(*) as listCnt
+		FROM
+			TBL_MENU
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null and keyword != ''">
+				<if test="searchType=='code'">
+					AND CODE like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='codename'">
+					AND CODENAME like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='comment'">
+					AND COMMENT like CONCAT('%', #{keyword}, '%')
+				</if>
+			</if>
+		</trim>
+	</select>
 	
 </mapper>

@@ -10,10 +10,19 @@
 	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
 
+<c:url var="deleteURL" value="/restMenu/deleteMenu">
+	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
+	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
+</c:url>
+
 <c:url var="updateURL" value="/restMenu/updateMenu">
+	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
+	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
 
 <c:url var="getMenuListURL" value="/restMenu/getMenuList">
+	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
+	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
 
 
@@ -48,7 +57,7 @@
 							htmls += '<tr>';
 							htmls += '<td>' + e.mid + '</td>';
 							htmls += '<td>';
-							htmls += '<a href="#" onClick="fn_menuInfo(' + mid + ',\'' + e.code +'\',\'' + e.codename + '\', ' + e.sort_num + ', \'' + e.comment + '\')" >';
+							htmls += '<a href="#" onClick="fn_menuInfo(' + e.mid + ',\'' + e.code +'\',\'' + e.codename + '\', ' + e.sort_num + ', \'' + e.comment + '\')" >';
 							htmls += e.code;
 							htmls += '</a>';
 							htmls += '</td>';
@@ -73,8 +82,8 @@
 		
 		var url = "${saveURL}";
 		var mid = $("#mid").val();
-		
-		if (mid != "") {
+		console.log("mid : " + mid);
+		if ($("#mid").val() != 0) {
 			var url = "${updateURL}";
 		}
 		var paramData = {
@@ -85,7 +94,7 @@
 		};
 		
 		console.log("url : " + url);
-		/*
+		
 		$.ajax({
 			url : url
 			, type : "POST"
@@ -95,11 +104,55 @@
 				console.log(result);
 				
 				fn_showList();
+				$("#btnInit").trigger("click");
 			}
 		});
-		*/
+		
 		
 	});
+	
+	$(document).on('click', '#btnDelete', function(e){
+		e.preventDefault();
+		
+		if ($("#code").val() == "") {
+			alert("삭제할 코드를 선택해 주세요.");
+			return;
+		}
+		
+		var url = "${deleteURL}";
+		
+		var paramData = {
+				"code" : $("#code").val()
+		};
+		
+		console.log("url : " + url);
+		
+		$.ajax({
+			url : url
+			, type : "POST"
+			, dataType :  "json"
+			, data : paramData
+			, success : function(result){
+				console.log(result);
+				
+				fn_showList();
+				
+				//삭제 후 셋팅값 초기
+				$("#btnInit").trigger("click");
+			}
+		});
+		
+	});
+	
+	$(document).on('click', '#btnInit', function(e){
+		$('#mid').val('');
+		$('#code').val('');
+		$('#codename').val('');
+		$('#sort_num').val('');
+		$('#comment').val('');
+	});
+	
+	
 	
 	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
@@ -176,6 +229,7 @@
 		<div>
 			<form:form name="form" id="form" role="form" modelAttribute="menuVO" method="post" action="${pageContext.request.contextPath}/menu/saveMenu">
 				<form:hidden path="mid" id="mid"/>
+				
 				<div class="row">
 					<div class="col-md-4 mb-3">
 						<label for="code">Code</label>
@@ -211,6 +265,7 @@
 		<div>
 			<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 			<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+			<button type="button" class="btn btn-sm btn-primary" id="btnInit">초기</button>
 		</div>
 		
 		<h4 class="mb-3" style="padding-top:15px">Menu List</h4>

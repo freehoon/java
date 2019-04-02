@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.freehoon.common.Search;
 import com.freehoon.web.menu.dao.MenuDAO;
 import com.freehoon.web.menu.model.MenuVO;
 
@@ -16,8 +17,8 @@ public class MenuServiceImpl implements MenuService {
 	private MenuDAO menuDAO;
 	
 	@Override
-	public List<MenuVO> getMenuList() throws Exception {
-		return menuDAO.getMenuList();
+	public List<MenuVO> getMenuList(Search search) throws Exception {
+		return menuDAO.getMenuList(search);
 	}
 
 	@Override
@@ -36,6 +37,11 @@ public class MenuServiceImpl implements MenuService {
 	public void deleteMenu(String code) throws Exception {
 		menuDAO.deleteMenu(code);
 		
+	}
+
+	@Override
+	public int getMenuListCnt(Search search) throws Exception {
+		return menuDAO.getMenuListCnt(search);
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.freehoon.common.Search;
 import com.freehoon.web.menu.model.MenuVO;
 
 @Repository
@@ -15,8 +16,8 @@ public class MenuDAOImpl implements MenuDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<MenuVO> getMenuList() throws Exception {
-		return sqlSession.selectList("com.freehoon.web.menu.menuMapper.getMenuList");
+	public List<MenuVO> getMenuList(Search search) throws Exception {
+		return sqlSession.selectList("com.freehoon.web.menu.menuMapper.getMenuList", search);
 	}
 
 	@Override
@@ -32,6 +33,11 @@ public class MenuDAOImpl implements MenuDAO {
 	@Override
 	public int deleteMenu(String code) throws Exception {
 		return sqlSession.delete("com.freehoon.web.menu.menuMapper.deleteMenu", code);
+	}
+
+	@Override
+	public int getMenuListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("com.freehoon.web.menu.menuMapper.getMenuListCnt", search);
 	}
 	
 
