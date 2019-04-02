@@ -20,7 +20,7 @@ public class MenuController {
 		
 		model.addAttribute("menuVO", new MenuVO());
 		
-		return "menu/menuList";
+		return "menu/menu";
 	}
 	
 	
