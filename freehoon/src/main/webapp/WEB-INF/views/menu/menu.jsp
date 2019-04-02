@@ -49,6 +49,7 @@
 			, success : function(result){
 				console.log(result);
 				
+				
 				if (result.status == "OK"){
 					if ( result.menuList.length > 0 ) {
 						var list = result.menuList;
@@ -66,6 +67,9 @@
 							htmls += '<td>' + e.comment + '</td>';
 							htmls += '</tr>';
 						});
+						
+						
+						
 					}
 				} else {
 					console.log("조회실패");
@@ -83,9 +87,11 @@
 		var url = "${saveURL}";
 		var mid = $("#mid").val();
 		console.log("mid : " + mid);
+		
 		if ($("#mid").val() != 0) {
 			var url = "${updateURL}";
 		}
+		
 		var paramData = {
 				"code" : $("#code").val()
 				, "codename" : $("#codename").val()
@@ -150,6 +156,10 @@
 		$('#codename').val('');
 		$('#sort_num').val('');
 		$('#comment').val('');
+		
+		//초기화가 되면 code 값을 입력 받을 수 있도록 code의 읽기 모드를 풀어 준다.
+		$("#code").removeAttr("readonly"); 
+
 	});
 	
 	
@@ -297,41 +307,6 @@
 			</table>
 		</div>
 		<!-- List{e} -->
-		
-		<!-- pagination{s} -->
-		<div id="paginationBox">
-			<ul class="pagination">
-				<c:if test="${pagination.prev}">
-					<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchType}', '${pagination.keyword}')">Previous</a></li>
-				</c:if>
-				
-				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-					<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchType}', '${pagination.keyword}' )"> ${idx} </a></li>
-				</c:forEach>
-				
-				<c:if test="${pagination.next}">
-					<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchType}', '${pagination.keyword}')">Next</a></li>
-				</c:if>
-			</ul>
-		</div>
-		<!-- pagination{e} -->
-		<!-- search{s} -->
-		<div class="form-group row justify-content-center">
-			<div style="padding-right:10px">
-				<select class="form-control form-control-sm" name="searchType" id="searchType">
-					<option value="title" <c:if test="${pagination.searchType eq 'title'}">selected</c:if> >제목</option>
-					<option value="content" <c:if test="${pagination.searchType eq 'content'}">selected</c:if>>본문</option>
-					<option value="reg_id" <c:if test="${pagination.searchType eq 'reg_id'}">selected</c:if>>작성자</option>
-				</select>
-			</div>
-			<div style="padding-right:10px">
-				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword" value="${pagination.keyword}">
-			</div>
-			<div>
-				<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
-			</div>
-		</div>
-		<!-- search{e} -->
 
 	</div>
 	</article>

@@ -1,7 +1,5 @@
 package com.freehoon.web;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.junit.Ignore;
@@ -10,15 +8,18 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.freehoon.common.Pagination;
 import com.freehoon.web.board.dao.BoardDAO;
 import com.freehoon.web.board.model.BoardVO;
+import com.freehoon.web.menu.dao.MenuDAO;
+import com.freehoon.web.menu.model.MenuVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
+@TestPropertySource(locations = "classpath:properties/database-properties.xml")
 @ContextConfiguration(locations = {
 	//	"classpath:servlet-context.xml", //화면이 없이 콘솔에서만 테스트 함으로 생략 가능하다.
 		"classpath:spring/root-context.xml",
@@ -29,6 +30,9 @@ public class BoardDAOTest {
 	
 	@Inject
 	private BoardDAO boardDAO;
+	
+	@Inject
+	private MenuDAO menuDAO;
 	
 	@Test @Ignore
 	public void testGetBoardList() throws Exception {
@@ -64,7 +68,7 @@ public class BoardDAOTest {
 	
 	@Test 
 	public void testInsertBoard() throws Exception {
-		BoardVO boardVO = new BoardVO();
+	/*	BoardVO boardVO = new BoardVO();
 		
 		for(int i=1; i < 1234 ; i++) {
 			boardVO.setCate_cd("1");
@@ -74,6 +78,24 @@ public class BoardDAOTest {
 			boardVO.setReg_id("1");
 			
 			int result = boardDAO.insertBoard(boardVO);
+			logger.info("\n Insert Board Result " +result);
+			if(result == 1) {
+				logger.info("\n 게시물 등록 성공 ");
+			} else {
+				logger.info("\n 게시물 등록 실패");
+			}
+		}
+		*/
+		
+		MenuVO menuVO = new MenuVO();
+		
+		for(int i=1; i < 1234 ; i++) {
+			menuVO.setCode(String.valueOf(i));
+			menuVO.setCodename(String.valueOf(i));
+			menuVO.setSort_num(i);
+			menuVO.setComment(String.valueOf(i));
+			
+			int result = menuDAO.saveMenu(menuVO);
 			logger.info("\n Insert Board Result " +result);
 			if(result == 1) {
 				logger.info("\n 게시물 등록 성공 ");

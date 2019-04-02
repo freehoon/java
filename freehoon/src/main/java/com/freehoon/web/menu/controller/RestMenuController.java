@@ -48,7 +48,6 @@ public class RestMenuController {
 		search.pageInfo(page, range, listCnt);
 		result.put("pagination", search);
 		
-		
 		try {
 			menuList = menuService.getMenuList(search);
 			result.put("status", "OK");
