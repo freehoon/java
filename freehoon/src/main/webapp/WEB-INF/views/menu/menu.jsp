@@ -171,6 +171,9 @@
 		$("#codename").val(codename);
 		$("#sort_num").val(sort_num);
 		$("#comment").val(comment);
+		
+		//코드 부분 읽기 모드로 전환
+		$("#code").attr("readonly", true);
 	}
 	
 	function fn_prev(page, range, rangeSize, searchType, keyword) {
@@ -265,7 +268,7 @@
 		<div>
 			<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 			<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
-			<button type="button" class="btn btn-sm btn-primary" id="btnInit">초기</button>
+			<button type="button" class="btn btn-sm btn-primary" id="btnInit">초기화</button>
 		</div>
 		
 		<h4 class="mb-3" style="padding-top:15px">Menu List</h4>
