@@ -70,26 +70,7 @@
 						});
 						
 						var pagination = "";
-						
-						console.log("startPage : " + result.pagination.startPage);
-						console.log("endPage : " + result.pagination.endPage);
-						/*
-						pagination += '<fmt:parseNumber value="' + result.pagination.startPage + '" var="startPage" />';
-						pagination += '<fmt:parseNumber value="' + result.pagination.endPage + '" var="endPage" />';
-						pagination += '<ul class="pagination">';
-						pagination += '<c:if test="' + ${result.pagination.prev}+ '">';
-						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_prev(\'' + ${result.pagination.page} + '\', \'' + ${result.pagination.range} + '\', \'' + ${result.pagination.rangeSize} + '\', \'' + ${result.pagination.searchType} + '\', \'' + ${result.pagination.keyword} + '\')">Previous</a></li>';
-						pagination += '</c:if>';
-						pagination += '<c:forEach begin="${startPage}" end="endPage" var="idx">';
-						pagination += '<li class="page-item <c:out value="' + ${result.pagination.page == idx ? 'active' : ''} + '"/> "><a class="page-link" href="#" onClick="fn_pagination(\'' + ${idx} + '\', \'' + ${result.pagination.range} + '\', \'' + ${result.pagination.rangeSize} + '\', \'' + ${result.pagination.searchType} + '\', \'' + ${result.pagination.keyword} + '\' )"> ' + ${idx} + '</a></li>';
-						pagination += '</c:forEach>';
-						pagination += '<c:if test="' + ${result.pagination.next} + '">';
-						pagination += '<li class="page-item"><a class="page-link" href="#" onClick="fn_next(\'' + ${result.pagination.page} + '\', \'' + ${result.pagination.range} + '\', \'' + ${result.pagination.rangeSize} + '\', \'' + ${result.pagination.searchType} + '\', \'' + ${result.pagination.keyword} + '\')">Next</a></li>';
-						pagination += '</c:if>';
-						pagination += '</ul>';
-						*/
-						
-						
+		
 						
 					}
 				} else {
@@ -208,6 +189,8 @@
 		$("#code").attr("readonly", true);
 	}
 	
+	
+	<!-- 페이징 이벤트 {s} -->
 	function fn_prev(page, range, rangeSize, searchType, keyword) {
 		
 		var page = ((range - 2) * rangeSize) + 1;
@@ -245,6 +228,26 @@
 		
 		location.href = url;
 	}
+	<!-- 페이징 이벤트 {e} -->
+	
+	$(document).on('click', '#btnPrint', function(e){
+		var setting = "width=650, height=650";
+		var objWin = window.open('','print',setting);
+		
+		var text = "";
+		for(var i = 0 ; i < 100 ; i++){
+			text += "123456789<br>";
+		}
+		
+		objWin.document.open();
+		objWin.document.write(text);
+		objWin.focus();
+		objWin.document.close();
+		
+		objWin.print();
+		objWin.close();
+		
+	});
 	
 </script>
 
@@ -301,6 +304,7 @@
 			<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 			<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
 			<button type="button" class="btn btn-sm btn-primary" id="btnInit">초기화</button>
+			<button type="button" class="btn btn-sm btn-primary" id="btnPrint">인쇄</button>
 		</div>
 		
 		<h4 class="mb-3" style="padding-top:15px">Menu List</h4>
