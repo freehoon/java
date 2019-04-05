@@ -1,31 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div id="text-center">
 <!-- login form {s} -->
-<form class="form-signin">
+<form:form class="form-signin" name="form" id="form" role="form" modelAttribute="userVO" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
 	<div class="text-center mb-4">
 		<h1 class="h3 mb-3 font-weight-normal">FREEHOON.COM</h1>
 	</div>
 	
 	<div class="form-label-group">
-		<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-		<label for="inputEmail">Email address</label>
+		<form:input path="uid" id="uid" class="form-control" placeholder="User ID" required="" autofocus="" />
+		<label for="uid" class="sr-only">User ID</label>
 	</div>
 	
 	<div class="form-label-group">
-		<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-		<label for="inputPassword">Password</label>
+		<form:password path="pwd" id="pwd" class="form-control" placeholder="User Password" required="" />
+		<label for="pwd" class="sr-only">User Password</label>
 	</div>
 	
-	<div class="checkbox mb-3">
-		<label>
-			<input type="checkbox" value="remember-me"> Remember me
-		</label>
-	</div>
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	<p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p>
-</form>
+	
+	<span style="font-size:11pt;">Sign up</span>
+	
+	<p class="mt-5 mb-3 text-muted text-center">© 2019. FREEHOON. All rights reserved.</p>
+</form:form>
 <!-- login form {e} -->
-</div>
