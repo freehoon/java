@@ -10,6 +10,8 @@
 			, NAME
 			, PASSWORD
 			, EMAIL
+			, GRADE
+			, REG_DT
 		FROM
 			TBL_USER
 		WHERE
@@ -22,16 +24,21 @@
 			, NAME
 			, PASSWORD
 			, EMAIL
+			, GRADE
+			, REG_DT
 		FROM
 			TBL_USER
 	</select>
 	
 	<insert id="insertUser" parameterType="com.freehoon.web.user.model.UserVO">
-		INSERT INTO TBL_USER (NAME, PASSWORD, EMAIL)
+		INSERT INTO TBL_USER (NAME, PASSWORD, EMAIL, GRADE, REG_DT)
 		VALUES (
 			#{name}
 			, #{password}
 			, #{email}
+			, #{grade}
+			, now()
+			)
 		)
 	</insert>
 	
@@ -40,6 +47,7 @@
 			NAME = #{name}
 			, PASSWORD = #{password}
 			, EMAIL = #{email}
+			, GRADE = #{grade}
 		WHERE
 			UID = #{uid}
 	</update>

@@ -1,16 +1,18 @@
 package com.freehoon.web.user.model;
 
 public class UserVO {
-	int uid;
+	String uid;
 	String name;
 	String pwd;
 	String email;
+	String grade;
+	String reg_dt;
 	
-	public int getUid() {
+	public String getUid() {
 		return uid;
 	}
 	
-	public void setUid(int uid) {
+	public void setUid(String uid) {
 		this.uid = uid;
 	}
 	
@@ -37,10 +39,27 @@ public class UserVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getReg_dt() {
+		return reg_dt;
+	}
+
+	public void setReg_dt(String reg_dt) {
+		this.reg_dt = reg_dt;
+	}
+
 	@Override
 	public String toString() {
-		return "UserVO [uid=" + uid + ", name=" + name + ", pwd=" + pwd + ", email=" + email + "]";
+		return "UserVO [uid=" + uid + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", grade=" + grade
+				+ ", reg_dt=" + reg_dt + "]";
 	}
 	
 }

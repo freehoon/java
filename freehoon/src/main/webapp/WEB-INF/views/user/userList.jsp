@@ -22,7 +22,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>board</title>
+<title>User List</title>
 
 <script>
 	$(document).on('click', '#btnRegistUser', function(e){
@@ -104,9 +104,10 @@
 			<table class="table table-striped table-sm">
 				<colgroup>
 					<col style="width:auto;" />
+					<col style="width:25%;" />
+					<col style="width:25%;" />
 					<col style="width:15%;" />
-					<col style="width:10%;" />
-					<col style="width:10%;" />
+					<col style="width:15%;" />
 				</colgroup>
 				<thead>
 					<tr>
@@ -114,6 +115,7 @@
 						<th>USER ID</th>
 						<th>USER NAME</th>
 						<th>EMAIL</th>
+						<th>GRADE</th>
 						<th>가입일</th>
 					</tr>
 				</thead>
@@ -132,6 +134,7 @@
 									</td>
 									<td><c:out value="${list.name}"/></td>
 									<td><c:out value="${list.email}"/></td>
+									<td><c:out value="${list.grade}"/></td>
 									<td><c:out value="${list.reg_dt}"/></td>
 								</tr>
 							</c:forEach>
@@ -141,7 +144,7 @@
 			</table>
 		</div>
 		<div>
-			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
+			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">회원가입</button>
 		</div>
 
 		<!-- pagination{s} -->
