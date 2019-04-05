@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	
 	
-	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginForm(Model model) throws Exception {
 		
 		return "login/login";

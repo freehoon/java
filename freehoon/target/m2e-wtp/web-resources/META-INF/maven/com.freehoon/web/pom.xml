@@ -214,27 +214,6 @@
 		    <artifactId>tiles-core</artifactId>
 		    <version>${org.apache.tiles-version}</version>
 		</dependency>
-				
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-api -->
-		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-api</artifactId>
-		    <version>${org.apache.tiles-version}</version>
-		</dependency>
-								
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
-		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-extras</artifactId>
-		    <version>${org.apache.tiles-version}</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-template -->
-		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-template</artifactId>
-		    <version>${org.apache.tiles-version}</version>
-		</dependency>
 
 
 	</dependencies>

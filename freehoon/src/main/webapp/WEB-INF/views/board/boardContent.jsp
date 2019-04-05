@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+<%@ include file="/WEB-INF/tiles/layouts/header.jsp"%>
 
 <c:url var="saveReplyURL" value="/restBoard/saveReqly"></c:url>
 <c:url var="updateReplyURL" value="/restBoard/updateReqly"></c:url>
