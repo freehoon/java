@@ -22,12 +22,12 @@ public class UserController {
 	@Inject
 	private UserService userService;
 	
-	@RequestMapping(value = "/registUserForm", method = RequestMethod.GET)
-	public String registUserForm(Model model) throws Exception {
+	@RequestMapping(value = "/signupForm", method = RequestMethod.GET)
+	public String signupForm(Model model) throws Exception {
 		
 		model.addAttribute("userVO", new UserVO());
 		
-		return "user/registUserForm";
+		return "user/signupForm";
 	}
 	
 	@RequestMapping(value = "/getUserList", method = RequestMethod.GET)
