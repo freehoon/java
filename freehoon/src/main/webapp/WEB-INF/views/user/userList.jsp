@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ include file="/WEB-INF/tiles/layouts/header.jsp"%>
-
-<c:set var="globalCtx" value="${pageContext.request.contextPath}" scope="request"/>
-
-<c:url var="registUserFormUrl" value="/user/registUserForm">
+<c:url var="signupFormUrl" value="/user/signupForm">
 	<c:if test="${not empty pagination.page}"><c:param name="page" value="${pagination.page}"/></c:if>
 	<c:if test="${not empty pagination.range}"><c:param name="range" value="${pagination.range}"/></c:if>
 </c:url>
@@ -17,18 +13,11 @@
 </c:url>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-
-<title>User List</title>
-
 <script>
 	$(document).on('click', '#btnRegistUser', function(e){
 		e.preventDefault();
 		
-		location.href = "${registUserFormUrl}";
+		location.href = "${signupFormUrl}";
 	});
 	
 	$(document).on('click', '#btnSearch', function(e){
@@ -94,8 +83,6 @@
 	}
 </style>
  
-</head>
-<body>
 	<article>
 	<div class="container">
 		<h2>User list</h2>
@@ -184,5 +171,3 @@
 
 	</div>
 	</article>
-</body>
-</html>

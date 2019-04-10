@@ -23,4 +23,5 @@ public class LoginController {
 		model.addAttribute("userVO", new UserVO());
 		return "login/signupForm";
 	}
+	
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.freehoon.web.board.model.BoardVO;
 import com.freehoon.web.user.model.UserVO;
 import com.freehoon.web.user.service.UserService;
 
@@ -35,7 +34,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/getUserList", method = RequestMethod.GET)
 	public String getUserList(Model model) throws Exception{
-		logger.info("getUserList();....");
+		logger.info("getUserList()....");
 		
 		model.addAttribute("userList", userService.getUserList());
 		
@@ -45,7 +44,7 @@ public class UserController {
 	@RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
 	public String getUserInfo(Model model
 			, @RequestParam("uid") String uid) throws Exception{
-		logger.info("getUserList();....");
+		logger.info("getUserInfo()....");
 		
 		model.addAttribute("userInfo", userService.getUserInfo(uid));
 		
@@ -54,11 +53,10 @@ public class UserController {
 	
 	@RequestMapping(value = "/insertUser", method = RequestMethod.POST)
 	public String insertUser(@ModelAttribute("userVO") UserVO userVO
-			, @RequestParam("mode") String mode
 			, RedirectAttributes rttr) throws Exception {
 		userService.insertUser(userVO);
 		
-		return "redirect:/board/getBoardList";
+		return "redirect:/user/getUserList";
 	}
 	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
@@ -67,7 +65,7 @@ public class UserController {
 			, RedirectAttributes rttr) throws Exception {
 		userService.updateUser(userVO);
 		
-		return "redirect:/board/getBoardList";
+		return "redirect:/user/getUserList";
 	}
 	
 }

@@ -17,7 +17,7 @@
 	});
 	
 	$(document).ready(function(){
-		var mode = '<c:out value="${mode}"/>';
+		/* var mode = '<c:out value="${mode}"/>';
 		if ( mode == 'edit'){
 			//입력 폼 셋팅
 			$("#reg_id").prop('readonly', true);
@@ -27,7 +27,7 @@
 			$("#title").val('<c:out value="${boardContent.title}"/>');
 			$("#content").val('<c:out value="${boardContent.content}"/>');
 			$("#tag").val('<c:out value="${boardContent.tag}"/>');
-		}
+		} */
 	});
 
 </script>

@@ -8,7 +8,7 @@
 		SELECT
 			UID
 			, NAME
-			, PASSWORD
+			, PWD
 			, EMAIL
 			, GRADE
 			, REG_DT
@@ -22,7 +22,7 @@
 		SELECT
 			UID
 			, NAME
-			, PASSWORD
+			, PWD
 			, EMAIL
 			, GRADE
 			, REG_DT
@@ -31,21 +31,20 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="com.freehoon.web.user.model.UserVO">
-		INSERT INTO TBL_USER (NAME, PASSWORD, EMAIL, GRADE, REG_DT)
+		INSERT INTO TBL_USER (UID, NAME, PWD, EMAIL, REG_DT)
 		VALUES (
-			#{name}
-			, #{password}
+			#{uid}
+			, #{name}
+			, #{pwd}
 			, #{email}
-			, #{grade}
 			, now()
-			)
 		)
 	</insert>
 	
 	<update id="updateUser" parameterType="com.freehoon.web.user.model.UserVO">
 		UPDATE TBL_USER SET
 			NAME = #{name}
-			, PASSWORD = #{password}
+			, PWD = #{pwd}
 			, EMAIL = #{email}
 			, GRADE = #{grade}
 		WHERE
