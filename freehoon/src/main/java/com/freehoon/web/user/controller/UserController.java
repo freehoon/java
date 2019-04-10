@@ -6,10 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.freehoon.web.board.model.BoardVO;
 import com.freehoon.web.user.model.UserVO;
 import com.freehoon.web.user.service.UserService;
 
@@ -49,5 +52,22 @@ public class UserController {
 		return "user/userList";
 	}
 	
+	@RequestMapping(value = "/insertUser", method = RequestMethod.POST)
+	public String insertUser(@ModelAttribute("userVO") UserVO userVO
+			, @RequestParam("mode") String mode
+			, RedirectAttributes rttr) throws Exception {
+		userService.insertUser(userVO);
+		
+		return "redirect:/board/getBoardList";
+	}
+	
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String updaterhUser(@ModelAttribute("userVO") UserVO userVO
+			, @RequestParam("mode") String mode
+			, RedirectAttributes rttr) throws Exception {
+		userService.updateUser(userVO);
+		
+		return "redirect:/board/getBoardList";
+	}
 	
 }

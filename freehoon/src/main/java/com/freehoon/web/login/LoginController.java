@@ -17,4 +17,10 @@ public class LoginController {
 		model.addAttribute("userVO", new UserVO());
 		return "login/login";
 	}
+	
+	@RequestMapping(value = "/signupForm", method = RequestMethod.GET)
+	public String signupForm(Model model) throws Exception {
+		model.addAttribute("userVO", new UserVO());
+		return "login/signupForm";
+	}
 }
