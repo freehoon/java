@@ -83,7 +83,7 @@
 	}
 </style>
  
-	<article>
+<article>
 	<div class="container">
 		<h2>User list</h2>
 		
@@ -170,4 +170,4 @@
 		<!-- search{e} -->
 
 	</div>
-	</article>
+</article>

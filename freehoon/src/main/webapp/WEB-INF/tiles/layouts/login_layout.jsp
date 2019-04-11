@@ -31,14 +31,15 @@
 <link rel="stylesheet" href="<c:url value='/resources/common/css/signin.css'/>" >
 
   
-  <style>
-  body{padding : 0px}
+<style>
+	body{padding : 0px}
   	
-  	#tile_body {
+	#tile_body {
   		width:100%; 
   		float:left;
-  	}
-  </style>
+	}
+ </style>
+
 </head>
 
 <body class="text-center">
