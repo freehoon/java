@@ -124,9 +124,6 @@
 				</tbody>
 			</table>
 		</div>
-		<div>
-			<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">회원가입</button>
-		</div>
 
 		<!-- pagination{s} -->
 		<div id="paginationBox">

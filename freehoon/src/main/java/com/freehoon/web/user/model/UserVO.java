@@ -4,6 +4,7 @@ public class UserVO {
 	String uid;
 	String name;
 	String pwd;
+	String re_pwd;
 	String email;
 	String grade;
 	String reg_dt;
@@ -32,6 +33,14 @@ public class UserVO {
 		this.pwd = pwd;
 	}
 	
+	public String getRe_pwd() {
+		return re_pwd;
+	}
+	
+	public void setRe_pwd(String re_pwd) {
+		this.re_pwd = re_pwd;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -58,7 +67,7 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [uid=" + uid + ", name=" + name + ", pwd=" + pwd + ", email=" + email + ", grade=" + grade
+		return "UserVO [uid=" + uid + ", name=" + name + ", pwd=" + pwd + ", re_pwd=" + re_pwd + ", email=" + email + ", grade=" + grade
 				+ ", reg_dt=" + reg_dt + "]";
 	}
 	
