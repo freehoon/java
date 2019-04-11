@@ -29,6 +29,12 @@ body {
 	padding-bottom : 10pt;
 }
 
+/* 페이징 */
+#paginationBox{
+	padding : 10px 0px;
+}
+
+
 /* 너비 관련 */
 .w100 { width : 100px; }
 .w200 { width : 200px; }

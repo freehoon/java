@@ -76,12 +76,6 @@
 	}
 	
 </script>
-
-<style>
-	#paginationBox{
-		padding : 10px 0px;
-	}
-</style>
  
 <article>
 	<div class="container">
@@ -151,6 +145,7 @@
 			</ul>
 		</div>
 		<!-- pagination{e} -->
+		
 		<!-- search{s} -->
 		<div class="form-group row justify-content-center">
 			<div style="padding-right:10px">

@@ -24,14 +24,6 @@ public class UserController {
 	@Inject
 	private UserService userService;
 	
-	@RequestMapping(value = "/signupForm", method = RequestMethod.GET)
-	public String signupForm(Model model) throws Exception {
-		
-		model.addAttribute("userVO", new UserVO());
-		
-		return "user/signupForm";
-	}
-	
 	@RequestMapping(value = "/getUserList", method = RequestMethod.GET)
 	public String getUserList(Model model) throws Exception{
 		logger.info("getUserList()....");
