@@ -66,9 +66,9 @@ public class BoardDAOTest {
 		}
 	}
 	
-	@Test 
+	@Test @Ignore
 	public void testInsertBoard() throws Exception {
-	/*	BoardVO boardVO = new BoardVO();
+		BoardVO boardVO = new BoardVO();
 		
 		for(int i=1; i < 1234 ; i++) {
 			boardVO.setCate_cd("1");
@@ -85,8 +85,8 @@ public class BoardDAOTest {
 				logger.info("\n 게시물 등록 실패");
 			}
 		}
-		*/
 		
+		/*
 		MenuVO menuVO = new MenuVO();
 		
 		for(int i=1; i < 1234 ; i++) {
@@ -103,7 +103,7 @@ public class BoardDAOTest {
 				logger.info("\n 게시물 등록 실패");
 			}
 		}
-		
+		*/
 		
 	}
 	
