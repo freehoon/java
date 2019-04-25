@@ -32,7 +32,7 @@
 
   
 <style>
-	body{padding : 0px}
+
   	
 	#tile_body {
   		width:100%; 
