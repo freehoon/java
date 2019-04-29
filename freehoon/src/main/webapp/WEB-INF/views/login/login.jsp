@@ -15,7 +15,7 @@
 </script>
 
 <!-- login form {s} -->
-<form:form class="form-signin" name="form" id="form" role="form" modelAttribute="userVO" method="post" action="${pageContext.request.contextPath}/board/saveBoard">
+<form:form class="form-signin" name="form" id="form" role="form" modelAttribute="userVO" method="post" action="${pageContext.request.contextPath}/login/login">
 	<div class="text-center mb-4">
 		<h1 class="h3 mb-3 font-weight-normal">FREEHOON.COM</h1>
 	</div>

@@ -9,7 +9,8 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
 	<!--dataSource 객체 설정 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  	 -->
 		<property name="driverClassName" value="#{datasource['jdbc.driverClassName']}" />
 		<property name="url" value="#{datasource['jdbc.url']}" />
 		<property name="username" value="#{datasource['jdbc.username']}" />
